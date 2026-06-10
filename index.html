@@ -1,11 +1,690 @@
 <!DOCTYPE html>
-<html lang="id">
+
+<html class="dark" lang="en" style="scrollbar-gutter: stable;">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Daftar Nama</title>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>SoundSpace Studio - Premium Recording</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error": "#690005",
+                        "outline": "#8f9194",
+                        "surface-container-lowest": "#0e0e0e",
+                        "inverse-surface": "#e5e2e1",
+                        "on-primary": "#2f3132",
+                        "on-secondary": "#2f3034",
+                        "on-background": "#e5e2e1",
+                        "primary-fixed-dim": "#c6c6c8",
+                        "primary-container": "#e2e2e4",
+                        "tertiary-fixed": "#ffdea5",
+                        "inverse-on-surface": "#313030",
+                        "surface-tint": "#c6c6c8",
+                        "primary-fixed": "#e2e2e4",
+                        "surface-bright": "#393939",
+                        "surface-container-high": "#2a2a2a",
+                        "on-secondary-fixed": "#1a1c1f",
+                        "on-tertiary-fixed": "#261900",
+                        "secondary": "#c6c6cb",
+                        "on-tertiary-fixed-variant": "#5d4201",
+                        "tertiary-fixed-dim": "#e9c176",
+                        "error-container": "#93000a",
+                        "on-surface": "#e5e2e1",
+                        "on-secondary-container": "#b4b5ba",
+                        "surface-container": "#201f1f",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary-container": "#7e5f1f",
+                        "secondary-fixed-dim": "#c6c6cb",
+                        "primary": "#ffffff",
+                        "tertiary": "#ffffff",
+                        "on-tertiary": "#412d00",
+                        "on-primary-fixed": "#1a1c1d",
+                        "surface-container-low": "#1c1b1b",
+                        "error": "#ffb4ab",
+                        "surface-dim": "#131313",
+                        "tertiary-container": "#ffdea5",
+                        "secondary-container": "#45474b",
+                        "surface": "#131313",
+                        "on-surface-variant": "#c5c7c9",
+                        "on-primary-fixed-variant": "#454749",
+                        "on-secondary-fixed-variant": "#45474b",
+                        "background": "#131313",
+                        "outline-variant": "#44474a",
+                        "surface-variant": "#353534",
+                        "inverse-primary": "#5d5e60",
+                        "secondary-fixed": "#e2e2e7",
+                        "surface-container-highest": "#353534",
+                        "on-primary-container": "#636466"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "20px",
+                        "section-gap": "120px",
+                        "container-max": "1440px",
+                        "gutter": "24px",
+                        "margin-desktop": "64px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "display-lg-mobile": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "letterSpacing": "0.01em", "fontWeight": "400" }],
+                        "display-lg-mobile": ["40px", { "lineHeight": "1.1", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "display-lg": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "headline-sm": ["24px", { "lineHeight": "1.3", "fontWeight": "500" }],
+                        "label-md": ["12px", { "lineHeight": "1", "letterSpacing": "0.08em", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #121212;
+            color: #e5e2e1;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism utilities */
+        .glass-panel {
+            background: rgba(28, 28, 30, 0.6);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .glass-card {
+            background: rgba(28, 28, 30, 0.4);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .ambient-glow {
+            box-shadow: 0 0 40px rgba(233, 193, 118, 0.15);
+        }
+
+        .ambient-glow-blue {
+            box-shadow: 0 0 40px rgba(100, 150, 255, 0.15);
+        }
+
+        .text-gradient {
+            background: linear-gradient(180deg, #FFFFFF 0%, #A0A0A0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Hide scrollbar for clean look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #121212;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #353534;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #5d5e60;
+        }
+    </style>
 </head>
-<body>
-    Michael Jehezkiel Herjuno Wijoyo 23.11.5901<br>
-    Amar Baladi Sulthan 23.11.5921
+
+<body
+    class="bg-background text-on-surface antialiased selection:bg-tertiary-fixed-dim selection:text-on-tertiary-fixed-variant">
+    <!-- TopAppBar (Floating Navbar) -->
+    <nav
+        class="fixed top-4 left-1/2 -translate-x-1/2 w-[90%] max-w-container-max rounded-full px-8 py-3 bg-surface-container/60 dark:bg-surface-container/60 backdrop-blur-3xl border border-outline-variant/10 shadow-xl flex justify-between items-center z-50">
+        <div class="flex items-center gap-3">
+            <img alt="SoundSpace Studio Logo" class="h-8 w-8 rounded-md object-cover"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_Ffb3vmIejIS2put70WZNOfgTanl9kXEF2xpr5m8-6UzFlR-MdxQXD319Nu_S_LkTAHQWfXhfJ0YkNucHPa9aZpMqdamnxzg4fVDoUrraMa8qV2wn7IubSw5WTIknXh54FWpStUsDBjmLsNaKKd6vDwpMspcUERs6o0PFS8a3wDmQd-dlTckTN6bEy86VsSF_HL3v1QNkkT4ZBH8isIXtdqgq4EZPJ9oz0IoT2823-wBWJRx3HTWU19cKCRBDhZ24mTAW8xVMa9xR" />
+            <span class="font-headline-sm text-headline-sm text-on-surface tracking-tighter">SoundSpace</span>
+        </div>
+        <div class="hidden md:flex items-center gap-8">
+            <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-300"
+                href="#services">Services</a>
+            <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-300"
+                href="#studio">Studio</a>
+            <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-300"
+                href="#about">About</a>
+            <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-300"
+                href="#pricing">Pricing</a>
+        </div>
+        <div class="flex items-center">
+            <a class="bg-primary text-on-primary font-label-md text-label-md px-6 py-2.5 rounded-full hover:scale-105 hover:bg-tertiary-fixed transition-all duration-300 ambient-glow"
+                href="#book">Book Session</a>
+        </div>
+    </nav>
+    <!-- Hero Section -->
+    <section
+        class="relative min-h-screen flex items-center justify-center overflow-hidden pt-32 pb-24 px-margin-mobile md:px-margin-desktop">
+        <!-- Background Image -->
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background z-10">
+            </div>
+            <img alt="Cinematic view of a high-end recording studio control room. A massive analog mixing console sits centrally, illuminated by warm, ambient studio lighting. Large studio monitor speakers flank the desk. The room features wood acoustic paneling and subtle LED accents in deep blues and warm golds. The atmosphere is professional, focused, and expensive."
+                class="w-full h-full object-cover object-center opacity-60 mix-blend-luminosity"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQTJXD35yFT2iWDx5tdPEruobu_ViTjcb44zqAyaccSI517QTlU67uOxYfKEmNjIDSBMc4OiymjrBUZbRidX8O-4xhxPvggPeNO6P-5tASin1XvgfDKgaFT11oWpqZ5QdajyNv6xPywluErP7na-pl33hZYjE_EZICrBmFRLQrsijnEjLhc0iojX0yKDFofxSW-i_OOzu2vcO4BKHHR-KC0o-C11Dutnc1vPpBHYP9QiQPzR2TJBe2FdrwwNBHhVlo7tsni-YXgLPh" />
+        </div>
+        <div class="relative z-20 w-full max-w-container-max flex flex-col items-center text-center mt-12">
+            <span
+                class="font-label-md text-label-md text-tertiary-fixed-dim uppercase tracking-[0.2em] mb-6 px-4 py-1.5 rounded-full border border-tertiary-fixed-dim/30 bg-tertiary-fixed-dim/10 backdrop-blur-md">Professional
+                Audio Suite</span>
+            <h1 class="font-display-lg-mobile md:font-display-lg text-gradient max-w-4xl mx-auto mb-8">
+                Create Music That Feels Alive.
+            </h1>
+            <p class="font-body-lg text-on-surface-variant max-w-2xl mx-auto mb-12">
+                Elevate your sound in our state-of-the-art facility. Engineered for clarity, designed for inspiration.
+                Experience the pinnacle of audio production.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-6 mb-24">
+                <a class="bg-primary text-on-primary font-label-md text-label-md px-8 py-4 rounded-full hover:scale-105 hover:bg-tertiary-fixed transition-all duration-300 ambient-glow text-center"
+                    href="#book">Book a Session</a>
+                <a class="bg-transparent text-primary border border-outline font-label-md text-label-md px-8 py-4 rounded-full hover:scale-105 hover:border-primary hover:bg-white/5 transition-all duration-300 text-center"
+                    href="#studio">View Studio</a>
+            </div>
+            <!-- Stats Glass Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl mx-auto">
+                <div
+                    class="glass-card rounded-xl p-6 flex flex-col items-center justify-center transform hover:-translate-y-2 transition-transform duration-300">
+                    <span class="font-headline-lg text-primary mb-2">500+</span>
+                    <span class="font-label-md text-on-surface-variant uppercase">Sessions Completed</span>
+                </div>
+                <div
+                    class="glass-card rounded-xl p-6 flex flex-col items-center justify-center transform hover:-translate-y-2 transition-transform duration-300">
+                    <span class="font-headline-lg text-primary mb-2">Tier 1</span>
+                    <span class="font-label-md text-on-surface-variant uppercase">Professional Audio Suite</span>
+                </div>
+                <div
+                    class="glass-card rounded-xl p-6 flex flex-col items-center justify-center transform hover:-translate-y-2 transition-transform duration-300">
+                    <span class="font-headline-lg text-primary mb-2">100%</span>
+                    <span class="font-label-md text-on-surface-variant uppercase">Trusted by Independent Artists</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Services Section -->
+    <section class="py-section-gap px-margin-mobile md:px-margin-desktop bg-surface-dim relative" id="services">
+        <div class="max-w-container-max mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16">
+                <div class="max-w-2xl">
+                    <h2 class="font-headline-lg text-primary mb-4">Sonic Architecture.</h2>
+                    <p class="font-body-lg text-on-surface-variant">Comprehensive audio services tailored for
+                        uncompromising quality. From tracking to final master, we shape your sound.</p>
+                </div>
+            </div>
+            <!-- Bento Grid for Services -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Large Card -->
+                <div
+                    class="glass-card rounded-2xl p-8 md:col-span-2 flex flex-col justify-end min-h-[300px] relative overflow-hidden group">
+                    <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest to-transparent z-10">
+                    </div>
+                    <div class="relative z-20">
+                        <span class="material-symbols-outlined text-4xl text-tertiary-fixed-dim mb-4"
+                            style="font-variation-settings: 'FILL' 0;">mic</span>
+                        <h3 class="font-headline-sm text-primary mb-2">Recording Studio</h3>
+                        <p class="font-body-md text-on-surface-variant max-w-md">Pristine signal chains and acoustically
+                            tuned live rooms designed to capture every nuance of your performance.</p>
+                    </div>
+                </div>
+                <!-- Regular Cards -->
+                <div
+                    class="glass-card rounded-2xl p-8 min-h-[300px] flex flex-col justify-between group hover:border-outline transition-colors duration-300">
+                    <span
+                        class="material-symbols-outlined text-3xl text-on-surface-variant group-hover:text-primary transition-colors"
+                        style="font-variation-settings: 'FILL' 0;">tune</span>
+                    <div>
+                        <h3 class="font-headline-sm text-primary mb-2">Mixing &amp; Mastering</h3>
+                        <p class="font-body-md text-on-surface-variant text-sm">Analog warmth meets digital precision.
+                            Finalize your tracks for industry-standard loudness and clarity.</p>
+                    </div>
+                </div>
+                <div
+                    class="glass-card rounded-2xl p-8 min-h-[300px] flex flex-col justify-between group hover:border-outline transition-colors duration-300">
+                    <span
+                        class="material-symbols-outlined text-3xl text-on-surface-variant group-hover:text-primary transition-colors"
+                        style="font-variation-settings: 'FILL' 0;">podcasts</span>
+                    <div>
+                        <h3 class="font-headline-sm text-primary mb-2">Podcast Production</h3>
+                        <p class="font-body-md text-on-surface-variant text-sm">Broadcast-ready vocal processing, noise
+                            reduction, and seamless editing for narrative flow.</p>
+                    </div>
+                </div>
+                <div
+                    class="glass-card rounded-2xl p-8 min-h-[300px] flex flex-col justify-between group hover:border-outline transition-colors duration-300">
+                    <span
+                        class="material-symbols-outlined text-3xl text-on-surface-variant group-hover:text-primary transition-colors"
+                        style="font-variation-settings: 'FILL' 0;">piano</span>
+                    <div>
+                        <h3 class="font-headline-sm text-primary mb-2">Music Production</h3>
+                        <p class="font-body-md text-on-surface-variant text-sm">Beat making, arrangement, and sound
+                            design. Turn raw ideas into fully realized commercial releases.</p>
+                    </div>
+                </div>
+                <div
+                    class="glass-card rounded-2xl p-8 min-h-[300px] flex flex-col justify-between group hover:border-outline transition-colors duration-300">
+                    <span
+                        class="material-symbols-outlined text-3xl text-on-surface-variant group-hover:text-primary transition-colors"
+                        style="font-variation-settings: 'FILL' 0;">graphic_eq</span>
+                    <div>
+                        <h3 class="font-headline-sm text-primary mb-2">Audio Editing</h3>
+                        <p class="font-body-md text-on-surface-variant text-sm">Surgical vocal tuning, timing
+                            correction, and meticulous audio restoration services.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <!-- Why Artists Choose SoundSpace -->
+    <section class="py-section-gap px-margin-mobile md:px-margin-desktop bg-surface" id="about">
+        <div class="max-w-container-max mx-auto space-y-32">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+                <div class="order-2 md:order-1">
+                    <h2 class="font-headline-lg text-primary mb-6">Built for Creative Excellence</h2>
+                    <p class="font-body-lg text-on-surface-variant mb-8">Our facilities are meticulously designed to
+                        provide an unparalleled sonic environment. Every detail, from acoustic treatment to signal path,
+                        is engineered for the highest fidelity.</p>
+                </div>
+                <div class="order-1 md:order-2 rounded-2xl overflow-hidden glass-panel ambient-glow">
+                    <img alt="Vocal Recording Booth" class="w-full aspect-video object-cover"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFr_1NY1P4qJ93ZDLyLxTyljGlrdLgMhvdJvxtevrScoU9fgmim-3oWvhM2XJjHYwhgRmn6CxKDqYMy2rhO2z6xhyuh5X-YnZOuibusYtp8vnziI4VAQF5EnDlsO_eAX66fwWucXDYcMYu1sSTSn3KLiudG2j37wlWq60vB8IDmfe7JhRcYVG7wQrfaQhsC_xjUTWYnZv9XJzEQ8u1oZlNG0dgr1GGUtWCmlDoG9RsNi9Mv-kw1TIM_phWaNMykniVvjxeo_D1F3Ie" />
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+                <div class="rounded-2xl overflow-hidden glass-panel ambient-glow-blue">
+                    <img alt="Podcast Studio" class="w-full aspect-video object-cover"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTfAJ_8I9Cq6UdiGfTuUoaIK28TB8qhRV7E2BZlf3FtAbsHhjgh51VXj3h7-oi0vTbDAvLN33iFOGQNsUVWc-ajVuxSWjez_gOrMEtCA9C8_U9i0z8JoqNmgvnWAR8ubqnhz_N1Ebug3vILS_31IenRRKUxZa90AZkOJ_pL0wna5mOL4YPpu0PTXd_jP4wbL9bWLVgE46hIeB1RN4_-hYSEptvJMpbNVJkYP3Ovqw3uPfbaKAAPiw7k7hvcXQfoRt14Vv8niRdGH59" />
+                </div>
+                <div>
+                    <h2 class="font-headline-lg text-primary mb-6">An Atmosphere That Inspires</h2>
+                    <p class="font-body-lg text-on-surface-variant mb-8">Step into a space where technology meets art.
+                        Our aesthetic is designed to remove distractions and allow your creativity to flow freely in a
+                        luxurious, comfortable setting.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Studio Experience Gallery -->
+    <section class="py-section-gap px-margin-mobile md:px-margin-desktop bg-surface-dim" id="studio">
+        <div class="max-w-container-max mx-auto">
+            <div class="mb-16 text-center">
+                <h2 class="font-headline-lg text-primary mb-4">Studio Experience</h2>
+                <p class="font-body-lg text-on-surface-variant">Take a glimpse inside our world-class creative spaces.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-6 grid-rows-2 gap-6 h-auto md:h-[800px]">
+                <div class="md:col-span-3 md:row-span-1 rounded-2xl overflow-hidden relative group">
+                    <img alt="Mixing Console"
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5RV-2f-bFitM6mz8-zf6EIerOMqYnjS78JEQKV5eSIoqtlXQL1aNFwVI_s1JAuMTqm_fsc3gFgkdfA60shqS68_JXWN9pUDyAvB-fynixseZcFzTFFdRxWgGQll_qiij7PuwR0l24ETE9RC6dEaKyQcGGtuCVE_CEUPIGr1QylZqfDpS7ZFQ0EwgdOrqSnTYyChOWGbVH4-W1Q82Mfw1f1Y8_LStBXkv6gZqfdpN-WutEClejgvNJHAOIPGOh3kQUn1w62TsCMu6B" />
+                    <div class="absolute bottom-0 left-0 p-6 bg-gradient-to-t from-black/80 to-transparent w-full">
+                        <span class="text-white font-label-md">Mixing Console</span>
+                    </div>
+                </div>
+                <div class="md:col-span-3 md:row-span-1 rounded-2xl overflow-hidden relative group">
+                    <img alt="Instruments"
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuk6J4jwmiKyMsQI6u56dO7XtUc63pYrQ1HfrQ5j1YPu9PtGUTwM1kQq4qNETG5_R-mmLRnYc_C1DiWli7K2KJ9Wl9I2CkYaQIiPYcSUTW8rav9GE1ugI8mf3KV7wmnIgS1m2ekZj729OEeXr9mqDnat4TroCrYdns7GfeODTH8pK2mLHGWZab0svzEMRaYll4A_AXMDWfb6qQfK-khHG-1qfbGaZ8KJMqNc6RL7nqkx_ZDymYY6_-I2PoClCP8FhRjNEsD0c3vqzi" />
+                    <div class="absolute bottom-0 left-0 p-6 bg-gradient-to-t from-black/80 to-transparent w-full">
+                        <span class="text-white font-label-md">Instruments</span>
+                    </div>
+                </div>
+                <div class="md:col-span-2 md:row-span-1 rounded-2xl overflow-hidden relative group">
+                    <img alt="Ambient Workspace"
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHuGxoQXYsIliJOEr3Argh4YYi79kQsdhwVQ7FG_47QVapinuW1r4eE1yer69jE0zbHUmyX3tdrg0yWDYDB9VtttkUanWKrTVaFtRVfVUJCkMlYFL1TdqcW6P2FzKqKVyCEmbTu53I6XqUdSQF3yHGCGSPjWjd6_ANatRz0hyUarH8QOEdIlDAlFLOXJSKSowPFeYRxvAsBILF3UOTgWfMp901FO0zom8vb4cjImy7S0i0ZrQiH26ko4MhugXX0i7cNeRnyD2W85rN" />
+                    <div class="absolute bottom-0 left-0 p-6 bg-gradient-to-t from-black/80 to-transparent w-full">
+                        <span class="text-white font-label-md">Ambient Workspace</span>
+                    </div>
+                </div>
+                <div class="md:col-span-4 md:row-span-1 rounded-2xl overflow-hidden relative group">
+                    <img alt="Late Night Session"
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        src="https://lh3.googleusercontent.com/aida/ADBb0uhr1ZtfWJFbuTLlrDwtW0U-0UPwV53FXuGf7L9ZRM7OS6tbFxY5ZPBcTj5qKN8i-8gumoBBXXIoQ0o70psjdgzbIC5_K23Urdm9O2Qe4tONfY91mA02mUgYEFGL_Ktz480mb_StbcuiSj0uorVKY9HX2W4vgiLzaKfywtY5cz557zVP3GeTmna3eCtQTfQTSQUC7sKDQCtQdR0CfznGG2-jmtVlmYG_or0XRzWN0R7kFFyHLpv9hyxLD0jX" />
+                    <div class="absolute bottom-0 left-0 p-6 bg-gradient-to-t from-black/80 to-transparent w-full">
+                        <span class="text-white font-label-md">Late Night Session</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- How It Works -->
+    <section class="py-section-gap px-margin-mobile md:px-margin-desktop bg-surface">
+        <div class="max-w-container-max mx-auto text-center">
+            <h2 class="font-headline-lg text-primary mb-16">The Path to Perfection</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12">
+                <div class="relative flex flex-col items-center">
+                    <div
+                        class="w-16 h-16 rounded-full glass-panel flex items-center justify-center mb-6 text-primary border-tertiary-fixed-dim/30">
+                        1</div>
+                    <h4 class="font-headline-sm text-lg text-primary mb-2">Book</h4>
+                    <p class="text-sm text-on-surface-variant">Select your service and reserve your session.</p>
+                </div>
+                <div class="relative flex flex-col items-center">
+                    <div
+                        class="w-16 h-16 rounded-full glass-panel flex items-center justify-center mb-6 text-primary border-tertiary-fixed-dim/30">
+                        2</div>
+                    <h4 class="font-headline-sm text-lg text-primary mb-2">Record</h4>
+                    <p class="text-sm text-on-surface-variant">Track in our acoustically treated environments.</p>
+                </div>
+                <div class="relative flex flex-col items-center">
+                    <div
+                        class="w-16 h-16 rounded-full glass-panel flex items-center justify-center mb-6 text-primary border-tertiary-fixed-dim/30">
+                        3</div>
+                    <h4 class="font-headline-sm text-lg text-primary mb-2">Mix &amp; Master</h4>
+                    <p class="text-sm text-on-surface-variant">Professional engineers finalize your sound.</p>
+                </div>
+                <div class="relative flex flex-col items-center">
+                    <div
+                        class="w-16 h-16 rounded-full glass-panel flex items-center justify-center mb-6 text-primary border-tertiary-fixed-dim/30">
+                        4</div>
+                    <h4 class="font-headline-sm text-lg text-primary mb-2">Publish</h4>
+                    <p class="text-sm text-on-surface-variant">Receive your files ready for distribution.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Testimonials -->
+    <section class="py-section-gap px-margin-mobile md:px-margin-desktop bg-surface-dim">
+        <div class="max-w-container-max mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glass-card p-8 rounded-2xl">
+                    <div class="flex items-center gap-4 mb-6">
+                        <img alt="Artist" class="w-12 h-12 rounded-full object-cover"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyjzi2TIizEkNfodntX7DHfgPUxwTtgn96a9ElWYFgwugQVC83ASGtEccCOlK4kCMCwT_GkNRT_XdKUSbG97Ci-uqoJdCyEE3YwIKEj3COb0cCl6yLXEVfm1KdZexIGExSBtcQ_4cNxFBX92ZYatdfHMSj2UjZM78EHbzYEvXnP18AxS03ZpT7eiJXXw4S56LCf2kKSL_3QbseBN0w6s2rzTUCbntSGVSKRrA4Au7z9JRdazJibDfPHSPNtNN3hkV8r6vOWk0ZNbtQ" />
+                        <div>
+                            <div class="text-primary font-bold">Julian Marx</div>
+                            <div class="text-xs text-on-surface-variant">Independent Artist</div>
+                        </div>
+                    </div>
+                    <p class="italic text-on-surface-variant font-body-md">"SoundSpace didn't just record my album; they
+                        helped me find my sound. The atmosphere is purely creative."</p>
+                </div>
+                <div class="glass-card p-8 rounded-2xl border-primary/20 bg-white/5">
+                    <div class="flex items-center gap-4 mb-6">
+                        <img alt="Host" class="w-12 h-12 rounded-full object-cover"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCH42T4SUV0D1NGvcsQ7NNHBSnydSVNfoKrOSK8yhrqIlrfJt0D0fSMNjpu8CpHJO-BhKiFixn_nzAxQjxUKfaRnxJcyqb_NzmgTvOveONHueGXsI7etNg7FIs1b2BiDlV4Qg8nVHXGd_wvvc2VPImpBthUKSxiWR5jZkYXfkwREfa4mLBgYUxHagJqXiAmOjoAhy5zjz73SmMhkXvMqjWr191qYg6p9u1BfRcnJRfwepUC-O8UJbMtQ9kPcP1VMAynjgLzcmrewPLz" />
+                        <div>
+                            <div class="text-primary font-bold">Sarah Jenkins</div>
+                            <div class="text-xs text-on-surface-variant">Podcast Host</div>
+                        </div>
+                    </div>
+                    <p class="italic text-on-surface-variant font-body-md">"The podcast facilities are world-class. My
+                        listeners noticed the jump in quality immediately."</p>
+                </div>
+                <div class="glass-card p-8 rounded-2xl">
+                    <div class="flex items-center gap-4 mb-6">
+                        <img alt="Producer" class="w-12 h-12 rounded-full object-cover"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMIArbhPbZVpUDY09744wu2tOAnLPhW9dyhn1XWaVF1we55fZEhKX0r0AR-ljmBCa78ioU_ji9TgVy8ge-FoUr2OpGHxH75IxoItyC9nP1JO6tGNmU0pb_yhjDUQNn7U9_zyOt4hB6KWytvkfe9sj4nc6SqPSkFH3Z-8SIYowcfSBDVSGoJgpRk7wmXh0EBwxJXCrBjcv8evm8QQrrUzX_Bej5BqTseymLnJAqWmwO53gj73AwlyP4qUexFtGKuLFJ1_KYIBU43wm6" />
+                        <div>
+                            <div class="text-primary font-bold">David Chen</div>
+                            <div class="text-xs text-on-surface-variant">Music Producer</div>
+                        </div>
+                    </div>
+                    <p class="italic text-on-surface-variant font-body-md">"As a producer, the gear list here is a
+                        dream. Everything just works perfectly for a modern workflow."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Trusted By -->
+    <section class="py-16 px-margin-mobile md:px-margin-desktop bg-surface border-y border-outline-variant/10">
+        <div
+            class="max-w-container-max mx-auto flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-30 grayscale">
+            <span class="font-headline-sm tracking-widest text-primary">AURA</span>
+            <span class="font-headline-sm tracking-widest text-primary">ECHO</span>
+            <span class="font-headline-sm tracking-widest text-primary">SonicPulse</span>
+            <span class="font-headline-sm tracking-widest text-primary">Vanguard</span>
+            <span class="font-headline-sm tracking-widest text-primary">NOVALITH</span>
+        </div>
+    </section>
+    <!-- Pricing Section -->
+    <section class="py-section-gap px-margin-mobile md:px-margin-desktop bg-surface-dim" id="pricing">
+        <div class="max-w-container-max mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="font-headline-lg text-primary mb-4">Investment in Quality</h2>
+                <p class="font-body-lg text-on-surface-variant">Choose the plan that fits your production scale.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glass-card p-10 rounded-3xl flex flex-col items-center text-center">
+                    <span class="font-label-md text-on-surface-variant mb-4 uppercase">Basic Session</span>
+                    <div class="text-4xl font-headline-lg text-primary mb-8">$150 <span
+                            class="text-lg font-normal text-on-surface-variant">/hr</span></div>
+                    <ul class="space-y-4 text-sm text-on-surface-variant mb-12">
+                        <li class="">Studio A Access</li>
+                        <li class="">Engineer Included</li>
+                        <li class="">Raw Stems Provided</li>
+                    </ul>
+                    <a class="w-full py-3 rounded-full border border-outline text-primary hover:bg-white/5 transition-all"
+                        href="#book">Choose Plan</a>
+                </div>
+                <div
+                    class="glass-card p-10 rounded-3xl flex flex-col items-center text-center border-primary/40 bg-surface-container shadow-2xl scale-105 relative z-10">
+                    <div
+                        class="absolute -top-4 bg-tertiary-fixed text-on-tertiary px-4 py-1 rounded-full font-label-md text-[10px] uppercase tracking-widest">
+                        Most Popular</div>
+                    <span class="font-label-md text-on-surface-variant mb-4 uppercase">Professional Session</span>
+                    <div class="text-4xl font-headline-lg text-primary mb-8">$1,200 <span
+                            class="text-lg font-normal text-on-surface-variant">/day</span></div>
+                    <ul class="space-y-4 text-sm text-on-surface-variant mb-12">
+                        <li class="">Full Day Access</li>
+                        <li class="">Lead Engineer &amp; Assistant</li>
+                        <li class="">Basic Mix Included</li>
+                        <li class="">Instrument Rental</li>
+                    </ul>
+                    <a class="w-full py-3 rounded-full bg-primary text-on-primary font-bold hover:bg-tertiary-fixed transition-all shadow-lg"
+                        href="#book">Book Now</a>
+                </div>
+                <div class="glass-card p-10 rounded-3xl flex flex-col items-center text-center">
+                    <span class="font-label-md text-on-surface-variant mb-4 uppercase">Full Production</span>
+                    <div class="text-4xl font-headline-lg text-primary mb-8">Custom</div>
+                    <ul class="space-y-4 text-sm text-on-surface-variant mb-12">
+                        <li class="">End-to-end Support</li>
+                        <li class="">Producer Consultation</li>
+                        <li class="">Full Mix &amp; Master</li>
+                        <li class="">Distribution Strategy</li>
+                    </ul>
+                    <a class="w-full py-3 rounded-full border border-outline text-primary hover:bg-white/5 transition-all"
+                        href="#book">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- FAQ -->
+    <section class="relative py-section-gap px-margin-mobile md:px-margin-desktop bg-surface overflow-hidden">
+        <div class="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
+            <div
+                class="w-full max-w-[800px] h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-tertiary-fixed-dim/10 via-transparent to-transparent blur-[80px]">
+            </div>
+        </div>
+        <div class="relative z-10 max-w-3xl mx-auto">
+            <div class="text-center mb-16">
+                <span
+                    class="font-label-md text-label-md text-tertiary-fixed-dim uppercase tracking-[0.2em] mb-4 block">Concierge
+                    Support</span>
+                <h2 class="font-headline-lg text-primary">Frequently Asked</h2>
+            </div>
+            <div class="space-y-4">
+                <details
+                    class="glass-card rounded-xl p-6 group cursor-pointer transition-all duration-300 hover:border-outline-variant/50 open:bg-surface-container-high/60 open:shadow-[0_0_40px_rgba(233,193,118,0.05)] open:border-tertiary-fixed-dim/20 backdrop-blur-xl border border-white/5">
+                    <summary class="flex justify-between items-center list-none">
+                        <h4 class="text-primary font-headline-sm text-lg">How do I book a session?</h4>
+                        <span
+                            class="material-symbols-outlined text-on-surface-variant group-open:text-tertiary-fixed-dim group-open:rotate-180 transition-all duration-300">expand_more</span>
+                    </summary>
+                    <div
+                        class="mt-4 text-on-surface-variant font-body-md text-sm leading-relaxed opacity-0 group-open:opacity-100 transition-opacity duration-500 delay-100">
+                        You can book directly through our online portal by clicking the 'Book Session' button. Select
+                        your preferred date, time, and studio suite, and our team will confirm your reservation within
+                        24 hours.
+                    </div>
+                </details>
+                <details
+                    class="glass-card rounded-xl p-6 group cursor-pointer transition-all duration-300 hover:border-outline-variant/50 open:bg-surface-container-high/60 open:shadow-[0_0_40px_rgba(233,193,118,0.05)] open:border-tertiary-fixed-dim/20 backdrop-blur-xl border border-white/5">
+                    <summary class="flex justify-between items-center list-none">
+                        <h4 class="text-primary font-headline-sm text-lg">Can I bring my own equipment?</h4>
+                        <span
+                            class="material-symbols-outlined text-on-surface-variant group-open:text-tertiary-fixed-dim group-open:rotate-180 transition-all duration-300">expand_more</span>
+                    </summary>
+                    <div
+                        class="mt-4 text-on-surface-variant font-body-md text-sm leading-relaxed opacity-0 group-open:opacity-100 transition-opacity duration-500 delay-100">
+                        Absolutely. While we provide a Tier 1 selection of professional analog and digital gear, you are
+                        more than welcome to bring your own instruments, specialized microphones, or outboard gear to
+                        ensure your signature sound.
+                    </div>
+                </details>
+                <details
+                    class="glass-card rounded-xl p-6 group cursor-pointer transition-all duration-300 hover:border-outline-variant/50 open:bg-surface-container-high/60 open:shadow-[0_0_40px_rgba(233,193,118,0.05)] open:border-tertiary-fixed-dim/20 backdrop-blur-xl border border-white/5">
+                    <summary class="flex justify-between items-center list-none">
+                        <h4 class="text-primary font-headline-sm text-lg">Is audio engineer assistance included?</h4>
+                        <span
+                            class="material-symbols-outlined text-on-surface-variant group-open:text-tertiary-fixed-dim group-open:rotate-180 transition-all duration-300">expand_more</span>
+                    </summary>
+                    <div
+                        class="mt-4 text-on-surface-variant font-body-md text-sm leading-relaxed opacity-0 group-open:opacity-100 transition-opacity duration-500 delay-100">
+                        Yes, every booking includes a dedicated assistant engineer to help with setup and technical
+                        routing. For full production and mixing sessions, our senior engineers are available as part of
+                        our Professional and Full Production tiers.
+                    </div>
+                </details>
+                <details
+                    class="glass-card rounded-xl p-6 group cursor-pointer transition-all duration-300 hover:border-outline-variant/50 open:bg-surface-container-high/60 open:shadow-[0_0_40px_rgba(233,193,118,0.05)] open:border-tertiary-fixed-dim/20 backdrop-blur-xl border border-white/5">
+                    <summary class="flex justify-between items-center list-none">
+                        <h4 class="text-primary font-headline-sm text-lg">Do you support podcast production?</h4>
+                        <span
+                            class="material-symbols-outlined text-on-surface-variant group-open:text-tertiary-fixed-dim group-open:rotate-180 transition-all duration-300">expand_more</span>
+                    </summary>
+                    <div
+                        class="mt-4 text-on-surface-variant font-body-md text-sm leading-relaxed opacity-0 group-open:opacity-100 transition-opacity duration-500 delay-100">
+                        We do. Our Studio B is specifically optimized for high-end podcasting and voice-over work,
+                        featuring broadcast-ready signal chains, acoustic treatment for vocal clarity, and multi-mic
+                        configurations.
+                    </div>
+                </details>
+                <details
+                    class="glass-card rounded-xl p-6 group cursor-pointer transition-all duration-300 hover:border-outline-variant/50 open:bg-surface-container-high/60 open:shadow-[0_0_40px_rgba(233,193,118,0.05)] open:border-tertiary-fixed-dim/20 backdrop-blur-xl border border-white/5">
+                    <summary class="flex justify-between items-center list-none">
+                        <h4 class="text-primary font-headline-sm text-lg">How long does mixing &amp; mastering take?
+                        </h4>
+                        <span
+                            class="material-symbols-outlined text-on-surface-variant group-open:text-tertiary-fixed-dim group-open:rotate-180 transition-all duration-300">expand_more</span>
+                    </summary>
+                    <div
+                        class="mt-4 text-on-surface-variant font-body-md text-sm leading-relaxed opacity-0 group-open:opacity-100 transition-opacity duration-500 delay-100">
+                        The timeline varies based on project complexity, but typically a single track is delivered
+                        within 3-5 business days. We provide up to two rounds of revisions to ensure the final master
+                        meets your exact specifications.
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+    <!-- Final Cinematic CTA -->
+    <section class="relative py-48 overflow-hidden" id="final-cta">
+        <div class="absolute inset-0 z-0">
+            <img alt="Luxurious Cinematic Recording Studio Atmosphere"
+                class="w-full h-full object-cover blur-[2px] opacity-40 mix-blend-luminosity"
+                src="https://lh3.googleusercontent.com/aida/ADBb0uhr1ZtfWJFbuTLlrDwtW0U-0UPwV53FXuGf7L9ZRM7OS6tbFxY5ZPBcTj5qKN8i-8gumoBBXXIoQ0o70psjdgzbIC5_K23Urdm9O2Qe4tONfY91mA02mUgYEFGL_Ktz480mb_StbcuiSj0uorVKY9HX2W4vgiLzaKfywtY5cz557zVP3GeTmna3eCtQTfQTSQUC7sKDQCtQdR0CfznGG2-jmtVlmYG_or0XRzWN0R7kFFyHLpv9hyxLD0jX" />
+            <div class="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent"></div>
+            <div
+                class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-transparent via-background/20 to-background/90">
+            </div>
+        </div>
+        <div class="relative z-10 max-w-container-max mx-auto px-margin-mobile text-center">
+            <span
+                class="font-label-md text-label-md text-tertiary-fixed-dim uppercase tracking-[0.3em] mb-6 block">Begin
+                Your Journey</span>
+            <h2 class="font-display-lg-mobile md:font-display-lg text-gradient mb-12 drop-shadow-2xl">
+                Your Next Sound Starts Here
+            </h2>
+            <div class="flex justify-center">
+                <a class="bg-primary text-on-primary font-label-md text-label-md px-12 py-5 rounded-full hover:scale-110 hover:bg-tertiary-fixed transition-all duration-500 ambient-glow flex items-center gap-3"
+                    href="#book">
+                    <span class="">Start Your Project</span>
+                    <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                </a>
+            </div>
+        </div>
+    </section>
+    <footer class="w-full py-section-gap border-t border-outline-variant/10 bg-surface text-on-surface">
+        <div class="max-w-container-max mx-auto px-margin-desktop grid grid-cols-1 md:grid-cols-4 gap-gutter">
+            <div class="flex flex-col gap-4 col-span-1 md:col-span-2">
+                <div class="flex items-center gap-3 mb-4">
+                    <img alt="SoundSpace Studio Logo Footer" class="h-8 w-8 rounded-md object-cover grayscale"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_Ffb3vmIejIS2put70WZNOfgTanl9kXEF2xpr5m8-6UzFlR-MdxQXD319Nu_S_LkTAHQWfXhfJ0YkNucHPa9aZpMqdamnxzg4fVDoUrraMa8qV2wn7IubSw5WTIknXh54FWpStUsDBjmLsNaKKd6vDwpMspcUERs6o0PFS8a3wDmQd-dlTckTN6bEy86VsSF_HL3v1QNkkT4ZBH8isIXtdqgq4EZPJ9oz0IoT2823-wBWJRx3HTWU19cKCRBDhZ24mTAW8xVMa9xR" />
+                    <span class="font-headline-sm text-headline-sm text-primary">SoundSpace</span>
+                </div>
+                <p class="font-body-md text-body-md text-on-surface-variant max-w-sm">
+                    Premium recording and production facilities designed for the modern artist. Elevate your sonic
+                    identity.
+                </p>
+                <div
+                    class="mt-8 font-label-md text-label-md text-on-surface-variant opacity-80 hover:opacity-100 transition-opacity">
+                    © 2024 SoundSpace Studio. Designed by Creative Alchemists.<br />
+                    <span class="mt-2 block text-xs">Michael Jehezkiel Herjuno Wijoyo — 23.11.5901<br />Amar Baladi
+                        Sulthan — 23.11.5921</span>
+                </div>
+            </div>
+            <div class="flex flex-col gap-4">
+                <h4 class="font-label-md text-label-md text-primary mb-2">Navigation</h4>
+                <a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors duration-200"
+                    href="#services">Services</a>
+                <a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors duration-200"
+                    href="#studio">Studio</a>
+                <a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors duration-200"
+                    href="#about">About</a>
+                <a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors duration-200"
+                    href="#pricing">Pricing</a>
+            </div>
+            <div class="flex flex-col gap-4">
+                <h4 class="font-label-md text-label-md text-primary mb-2">Legal</h4>
+                <a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors duration-200"
+                    href="#">Contact</a>
+                <a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors duration-200"
+                    href="#">Privacy Policy</a>
+                <a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors duration-200"
+                    href="#">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
 </body>
+
 </html>
